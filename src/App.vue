@@ -1,20 +1,49 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="container">
+      <transition name="slide-fade" mode="out-in">
+        <keep-alive>
+          <router-view :key="$route.fullPath" />
+        </keep-alive>
+      </transition>
     </div>
-    <router-view />
   </div>
 </template>
 
 <style lang="scss">
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  pading: 0;
+  margin: 0;
+  height: 100%;
+  background-image: url("./assets/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  font-family: "Lato", sans-serif;
+}
+h1 {
+  color: #fff;
+  font-weight: 800;
+  margin: 20px 0 0;
+}
+.container {
+  width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  background: rgba(53, 53, 53, 0.35);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
 }
 
 #nav {
@@ -28,5 +57,17 @@
       color: #42b983;
     }
   }
+}
+
+.slide-fade-enter-active {
+  transition: all 0.4s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.4s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateX(15px);
+  opacity: 0;
 }
 </style>
