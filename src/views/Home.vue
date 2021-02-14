@@ -44,7 +44,6 @@ import CityInput from "@/components/CityInput.vue";
 import WeatherBox from "@/components/WeatherBox.vue";
 import geolocation from "@/mixins/geolocation";
 import gmapsPlacesService from "@/mixins/gmapsPlacesService";
-import gmapsLoader from "@/mixins/gmapsLoader";
 import { mapActions, mapState } from "vuex";
 
 export default {
@@ -53,7 +52,7 @@ export default {
     CityInput,
     WeatherBox
   },
-  mixins: [geolocation, gmapsLoader, gmapsPlacesService],
+  mixins: [geolocation, gmapsPlacesService],
   data() {
     return {
       city: ""

@@ -10,6 +10,13 @@
   </div>
 </template>
 
+<script>
+import gmapsLoader from "@/mixins/gmapsLoader";
+export default {
+  mixins: [gmapsLoader]
+};
+</script>
+
 <style lang="scss">
 * {
   box-sizing: border-box;
