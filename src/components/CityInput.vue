@@ -1,7 +1,10 @@
 <template>
   <div class="city-input">
-    <input v-model="location" @input="locked = false" />
-    <ul v-if="searchResults.length">
+    <input v-model="location" @input="onInput" />
+    <ul
+      v-show="searchResults.length && isOpen"
+      v-click-outside="onClickOutside"
+    >
       <li v-for="(result, i) in searchResults" :key="i" @click="select(result)">
         {{ result }}
       </li>
@@ -16,6 +19,7 @@ export default {
   mixins: [gmapsAutoCompleteService],
   data: () => ({
     location: "",
+    isOpen: false,
     searchResults: [],
     locked: false
   }),
@@ -36,6 +40,13 @@ export default {
     }
   },
   methods: {
+    onInput() {
+      this.locked = false;
+      this.isOpen = true;
+    },
+    onClickOutside() {
+      this.isOpen = false;
+    },
     select(result) {
       this.locked = true;
       this.location = result;
