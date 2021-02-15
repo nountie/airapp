@@ -22,7 +22,7 @@
       <div class="info-box" v-if="error">
         <p>{{ error }}</p>
       </div>
-      <template v-else-if="gl_position && weather">
+      <template v-else-if="(gl_position || gl_positionStatus === 0) && weather">
         <WeatherBox :content="weather" />
       </template>
       <div class="info-box" v-else-if="gl_positionStatus === 0">
